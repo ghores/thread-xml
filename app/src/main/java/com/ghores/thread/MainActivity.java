@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
         progressArrays[7] = findViewById(R.id.prg_thread8);
 
         labels = new TextView[NUM_THREADS];
-        labels[0] =  findViewById(R.id.txt_thread1);
-        labels[1] =  findViewById(R.id.txt_thread2);
-        labels[2] =  findViewById(R.id.txt_thread3);
-        labels[3] =  findViewById(R.id.txt_thread4);
-        labels[4] =  findViewById(R.id.txt_thread5);
-        labels[5] =  findViewById(R.id.txt_thread6);
-        labels[6] =  findViewById(R.id.txt_thread7);
-        labels[7] =  findViewById(R.id.txt_thread8);
+        labels[0] = findViewById(R.id.txt_thread1);
+        labels[1] = findViewById(R.id.txt_thread2);
+        labels[2] = findViewById(R.id.txt_thread3);
+        labels[3] = findViewById(R.id.txt_thread4);
+        labels[4] = findViewById(R.id.txt_thread5);
+        labels[5] = findViewById(R.id.txt_thread6);
+        labels[6] = findViewById(R.id.txt_thread7);
+        labels[7] = findViewById(R.id.txt_thread8);
 
         percents = new int[NUM_THREADS];
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 Thread thread = Thread.currentThread();
 
                 int threadIndex = 0;
-                for (int i=0; i<threads.length; i++) {
+                for (int i = 0; i < threads.length; i++) {
                     if (threads[i] == thread) {
                         threadIndex = i;
                         break;
@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
                 final int finalThreadIndex = threadIndex;
 
-                for (int i=0; i<10000000; i++) {
+                for (int i = 0; i < 10000000; i++) {
                     final int percent = i / 100000;
                     percents[finalThreadIndex] = percent;
                 }
 
-                for (int i=0; i<NUM_THREADS; i++) {
+                for (int i = 0; i < NUM_THREADS; i++) {
                     percents[i] = 100;
                 }
             }
@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity {
 
         threads = new Thread[NUM_THREADS];
 
-        for (int i=0; i<NUM_THREADS; i++) {
+        for (int i = 0; i < NUM_THREADS; i++) {
             Thread thread = new Thread(task);
             thread.setName("Thread #" + i);
             threads[i] = thread;
         }
 
-        for (int i=0; i<NUM_THREADS; i++) {
+        for (int i = 0; i < NUM_THREADS; i++) {
             threads[i].start();
         }
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                for (int i=0; i<NUM_THREADS; i++) {
+                for (int i = 0; i < NUM_THREADS; i++) {
                     progressArrays[i].setProgress(percents[i]);
                     labels[i].setText("Thread #" + i + ": " + percents[i] + "%");
                 }
